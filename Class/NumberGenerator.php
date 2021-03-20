@@ -1,6 +1,6 @@
 <?php
 
-require_once('./GeneratorInterface.php');
+require_once('./Interface/GeneratorInterface.php');
 
 class NumberGenerator implements GeneratorInterface
 {

@@ -38,10 +38,10 @@
 		</div>
 	<?php
 	} else {
-		require_once('./NumberGenerator.php');
-		require_once('./StringGenerator.php');
-		require_once('./Classifier.php');
-		require_once('./OutputFormatter.php');
+		require_once('./Class/NumberGenerator.php');
+		require_once('./Class/StringGenerator.php');
+		require_once('./Class/Classifier.php');
+		require_once('./Class/OutputFormatter.php');
 
 		$number_generator = new NumberGenerator(0, 80);
 		$string_generator = new StringGenerator(2, 100);
@@ -57,7 +57,7 @@
 		<div class="col-12 row">
 			<div class="col-5"></div>
 			<div class="col-2">
-				<form method="post" class="form-group row" action="./DownloadCSV.php">
+				<form method="post" class="form-group row" action="/Script/DownloadCSV.php">
 					<input type="hidden" name="generated_numbers" value="<?php print_r(base64_encode(json_encode($generated_numbers))) ?>">
 					<input type="hidden" name="generated_strings" value="<?php print_r(base64_encode(json_encode($generated_strings))) ?>">
 					<input type="hidden" name="classified" value="<?php print_r(base64_encode(json_encode($classified))) ?>">

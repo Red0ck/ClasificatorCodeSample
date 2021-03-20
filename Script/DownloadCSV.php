@@ -4,7 +4,7 @@ $generated_numbers = json_decode(base64_decode($_POST['generated_numbers']), tru
 $generated_strings = json_decode(base64_decode($_POST['generated_strings']), true);
 $classified = json_decode(base64_decode($_POST['classified']), true);
 
-require_once('./OutputFormatter.php');
+require_once('../Class/OutputFormatter.php');
 
 $output_formatter = new OutputFormatter();
 
