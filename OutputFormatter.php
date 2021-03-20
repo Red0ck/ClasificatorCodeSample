@@ -34,4 +34,33 @@ class OutputFormatter
 
         return $table;
     }
+
+    public function exportCSV(array $items1, array $items2, array $classified, bool $header = false)
+    {
+        $csv = array();
+        if ($header) {
+            $csv[] = array('no.', 'Number', 'String', 'Classification X', 'Classification Y', 'Classification Z');
+        }
+
+        for ($i = 0; $i < count($items1); $i++) {
+            $csv[] = array($i + 1, $items1[$i], $items2[$i], $classified[$i]['x'], $classified[$i]['y'], $classified[$i]['z']);
+        }
+        $delimiter = ";";
+        $filename = "classification_" . date('Y-m-d H:i:s') . ".csv";
+
+        $file = fopen('php://memory', 'w');
+
+        foreach ($csv as $fields) {
+            fputcsv($file, $fields, $delimiter);
+        }
+
+        fseek($file, 0);
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        fpassthru($file);
+
+        exit;
+    }
 }

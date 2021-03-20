@@ -20,7 +20,7 @@
 					<b>INFO</b><br>
 					Set A will consist of random numbers in the range from <b>0</b> to <b>80</b> taken from the external API
 					<a href="http://www.randomnumberapi.com/">Random Number API</a>,
-					and Set B will consist of text strings of uppercase and lowercase letters and numbers, <b>2</b> to <b>100</b> in length..
+					and Set B will consist of text strings of uppercase and lowercase letters and numbers, <b>2</b> to <b>100</b> in length.
 				</p>
 				<br>
 				<br>
@@ -51,11 +51,28 @@
 		$generated_numbers = $number_generator->generate($_POST['set_size']);
 		$generated_strings = $string_generator->generate($_POST['set_size']);
 		$classified = $classifier->classify($generated_numbers, $generated_strings);
+	?>
+		<br>
+		<div class="col-12 row">
+			<div class="col-5"></div>
+			<div class="col-2">
+				<form method="post" class="form-group row" action="./DownloadCSV.php">
+					<input type="hidden" name="generated_numbers" value="<?php print_r(base64_encode(json_encode($generated_numbers))) ?>">
+					<input type="hidden" name="generated_strings" value="<?php print_r(base64_encode(json_encode($generated_strings))) ?>">
+					<input type="hidden" name="classified" value="<?php print_r(base64_encode(json_encode($classified))) ?>">
+					<input type="submit" class="btn btn-primary" value="Download CSV">
+				</form>
+			</div>
+		</div>
+		<br>
+	<?php
 
 		echo $output_formatter->showAsTable($generated_numbers, $generated_strings, $classified);
+		// echo $output_formatter->exportCSV($generated_numbers, $generated_strings, $classified, true);
 	}
 	?>
 
 </body>
 
 </html>
+<?php
