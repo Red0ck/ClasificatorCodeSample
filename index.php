@@ -43,7 +43,7 @@
 		require_once('./Classifier.php');
 		require_once('./OutputFormatter.php');
 
-		$number_generator = new NumberGenerator(5, 80);
+		$number_generator = new NumberGenerator(0, 80);
 		$string_generator = new StringGenerator(2, 100);
 		$classifier = new Classifier();
 		$output_formatter = new OutputFormatter();
@@ -51,6 +51,7 @@
 		$generated_numbers = $number_generator->generate($_POST['set_size']);
 		$generated_strings = $string_generator->generate($_POST['set_size']);
 		$classified = $classifier->classify($generated_numbers, $generated_strings);
+
 	?>
 		<br>
 		<div class="col-12 row">
@@ -60,7 +61,10 @@
 					<input type="hidden" name="generated_numbers" value="<?php print_r(base64_encode(json_encode($generated_numbers))) ?>">
 					<input type="hidden" name="generated_strings" value="<?php print_r(base64_encode(json_encode($generated_strings))) ?>">
 					<input type="hidden" name="classified" value="<?php print_r(base64_encode(json_encode($classified))) ?>">
-					<input type="submit" class="btn btn-primary" value="Download CSV">
+					<div class="form-group">
+						<a class="btn btn-secondary" href="/">Back</a>
+						<input type="submit" class="btn btn-primary" value="Download CSV">
+					</div>
 				</form>
 			</div>
 		</div>
@@ -68,7 +72,6 @@
 	<?php
 
 		echo $output_formatter->showAsTable($generated_numbers, $generated_strings, $classified);
-		// echo $output_formatter->exportCSV($generated_numbers, $generated_strings, $classified, true);
 	}
 	?>
 

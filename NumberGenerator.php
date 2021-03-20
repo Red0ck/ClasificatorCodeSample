@@ -15,13 +15,30 @@ class NumberGenerator implements GeneratorInterface
 
     public function generate($how_many)
     {
-        $c_url_connection = curl_init("http://www.randomnumberapi.com/api/v1.0/random?min={$this->_min}&max={$this->_max}&count={$how_many}");
-        // curl_setopt($c_url_connection, CURLOPT_POSTFIELDS, $postRequest);
-        curl_setopt($c_url_connection, CURLOPT_RETURNTRANSFER, true);
+        if ($how_many > 100) {
+            $api_numbers = array();
+            while ($how_many > 0) {
+                $curl_connection = curl_init("http://www.randomnumberapi.com/api/v1.0/random?min={$this->_min}&max={$this->_max}&count={$how_many}");
+                // curl_setopt($curl_connection, CURLOPT_POSTFIELDS, $postRequest);
+                curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
 
-        $api_response = curl_exec($c_url_connection);
-        curl_close($c_url_connection);
+                $api_response = curl_exec($curl_connection);
+                curl_close($curl_connection);
 
-        return json_decode($api_response);
+                $how_many -= 100;
+                $api_numbers = array_merge($api_numbers, json_decode($api_response));
+            }
+        } else {
+            $curl_connection = curl_init("http://www.randomnumberapi.com/api/v1.0/random?min={$this->_min}&max={$this->_max}&count={$how_many}");
+            // curl_setopt($curl_connection, CURLOPT_POSTFIELDS, $postRequest);
+            curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+
+            $api_response = curl_exec($curl_connection);
+            curl_close($curl_connection);
+
+            $api_numbers = json_decode($api_response);
+        }
+
+        return $api_numbers;
     }
 }
