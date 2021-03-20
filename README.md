@@ -1,11 +1,11 @@
-# Clasificator Code Sample
+# Classifier Code Sample
 Sample code for job interview exercise
 
 # Instruction to run the app
 1. Install PHP and Apache2 HTTP Server
-2. Copy project files into designated directory
-In Windows if you're using XAMPP it is `\xampp\htdocs`
-In linux based OS it is `/var/www/html`
+2. Copy project files into designated directory  
+2.1 In Windows if you're using XAMPP it is `\xampp\htdocs`  
+2.2 In Linux based OS it is `/var/www/html`
 3. Just connect to `localhost` or `127.0.0.1`
 
 # How to use the app
