@@ -9,6 +9,6 @@ Sample code for job interview exercise
 3. Just connect to `localhost` or `127.0.0.1`
 
 # How to use the app
-When you open the application's website, you will see a brief instruction on how the web application itself works.
-Unfortunately, you won't see exactly how the classifiers work.
+When you open the application's website, you will see a brief instruction on how the web application itself works.  
+Unfortunately, you won't see exactly how the classifiers work.  
 Enter the size of the sets to be generated, and after generating it, a table with results and a button to download the result as a CSV file will appear.
