@@ -40,15 +40,23 @@
 	} else {
 		require_once('./NumberGenerator.php');
 		require_once('./StringGenerator.php');
+		require_once('./Classifier.php');
 
 		$number_generator = new NumberGenerator(5, 80);
 		$string_generator = new StringGenerator(2, 100);
+		$classifier = new Classifier();
 
 		$generated_numbers = $number_generator->generate($_POST['set_size']);
 		$generated_strings = $string_generator->generate($_POST['set_size']);
-		var_dump($generated_numbers);
+		// var_dump($generated_numbers);
+		// echo '<br>';
+		// var_dump($generated_strings[0]);
+		// echo '<br>';
+		var_dump($generated_numbers[0]);
 		echo '<br>';
-		var_dump($generated_strings);
+		var_dump($generated_strings[0]);
+		echo '<br>';
+		var_dump($classifier->classify($generated_numbers, $generated_strings)[0]);
 	}
 	?>
 

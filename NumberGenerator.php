@@ -6,11 +6,13 @@ class NumberGenerator implements GeneratorInterface
 {
     private $_min;
     private $_max;
+
     function __construct(int $min, int $max)
     {
         $this->_min = $min;
         $this->_max = $max;
     }
+
     public function generate($how_many)
     {
         $c_url_connection = curl_init("http://www.randomnumberapi.com/api/v1.0/random?min={$this->_min}&max={$this->_max}&count={$how_many}");
